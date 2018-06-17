@@ -2,6 +2,10 @@ visible_hostname <%= @servername %>
 #
 # Recommended minimum configuration:
 #
+acl manager proto cache_object
+acl localhost src 127.0.0.1/32 ::1
+acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
+
 acl ftp proto FTP
 acl ftp_port port 21
 always_direct allow FTP
