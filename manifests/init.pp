@@ -30,7 +30,7 @@ class squid(
   Enum['present','absent'] $ensure     = 'present',
   Boolean $transparent                 = true,
   String $servername                   = $facts['networking']['fqdn'],
-  Stdlib::Compat::Ipv4 $myip           = $facts['networking']['ip'],
+  Stdlib::Ip::Address $myip            = $facts['networking']['ip'],
   Array[Numeric] $ssl_ports            = [443],
   Optional[Array] $myacl               = undef,
 ) inherits squid::params {
