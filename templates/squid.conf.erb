@@ -1,20 +1,12 @@
-visible_hostname <%= @servername %>
 #
 # Recommended minimum configuration:
 #
-acl manager proto cache_object
-acl localhost src 127.0.0.1/32 ::1
-acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
-
-acl ftp proto FTP
-acl ftp_port port 21
-always_direct allow FTP
-
 # Example rule allowing access from your local networks.
 # Adapt to list your (internal) IP networks from where browsing
 # should be allowed
 # acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
 # acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+# acl localnet src 192.168.0.0/16 # RFC1918 possible internal network
 # acl localnet src fc00::/7       # RFC 4193 local private network range
 # acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
 acl localnet src <%= @mynetwork %>
@@ -53,22 +45,16 @@ http_access deny manager
 #
 # INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
 #
-<% if @myacl -%>
+<% if @myacl and ! @myacl.empty? -%>
 <% @myacl.each do |item| -%>
 acl myacl src <%= item %>
 <% end -%>
 http_access allow myacl
 <% else -%>
 http_access allow localnet
+http_access allow localhost
 <% end -%>
 
-# Example rule allowing access from your local networks.
-# Adapt localnet in the ACL section to list your (internal) IP networks
-# from where browsing should be allowed
-http_access allow ftp_port CONNECT
-http_access allow ftp
-
-http_access allow localhost
 
 # And finally deny all other access to this proxy
 http_access deny all

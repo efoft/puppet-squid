@@ -7,7 +7,7 @@
 #   If the proxy server should run in transparent mode. That means packets going to the web
 #   will be intercepted by firewall and redirected to the proxy port. Firewall configuration
 #   must be additionally performed.
-#   Default: true
+#   Default: false
 #
 # [*servername*]
 #   Visible proxy server name.
@@ -28,7 +28,7 @@
 #
 class squid(
   Enum['present','absent'] $ensure     = 'present',
-  Boolean $transparent                 = true,
+  Boolean $transparent                 = false,
   String $servername                   = $facts['networking']['fqdn'],
   Stdlib::Ip::Address $myip            = $facts['networking']['ip'],
   Array[Numeric] $ssl_ports            = [443],
