@@ -1,11 +1,11 @@
 {
         "name": "efoft-squid",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "author": "efoft",
         "license": "Apache-2.0",
         "source": "https://github.com/efoft/puppet-squid.git",
         "dependencies": [
-                { "name": "puppetlabs/stdlib", "version_requirement":">=4.25.1 < 5.0.0" }
+                { "name": "puppetlabs/stdlib", "version_requirement":">=4.25.1 < 7.0.0" }
         ],
         "data_provider": "hiera",
         "operatingsystem_support": [
@@ -27,7 +27,7 @@
         "requirements": [
           {
             "name": "puppet",
-            "version_requirement": ">= 4.5.0 < 5.0.0"
+            "version_requirement": ">= 4.5.0 < 7.0.0"
           }
         ],
         "description": "Squid server for CentOS, RHEL."
